@@ -21,7 +21,7 @@ def generate_subtitles(video_file, selected_language):
 
     if uploaded_file.state.name == "FAILED":
         raise ValueError(uploaded_file.state.name)
-    print(f'Video processing complete: ' + uploaded_file.uri)
+    print(f'Video processing completed: ' + uploaded_file.uri)
 
     # Create the prompt with the selected language
     prompt = f"""Generate only the exact SRT subtitle file content in {selected_language} with the following format:
@@ -39,7 +39,7 @@ def generate_subtitles(video_file, selected_language):
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro")
 
     # Make the LLM request to generate subtitles
-    print("Making LLM inference request...")
+    print("Making LLM inferencing request...")
     response = model.generate_content([prompt, uploaded_file], request_options={"timeout": 600})
 
     # Save the subtitles to a file
